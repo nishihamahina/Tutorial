@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
+    [SerializeField] Text gameOverText;
     [SerializeField] private float topBound;//上方向の制限
     [SerializeField] private float lowerBound;//下方向の制限
     void Update()
@@ -16,6 +17,7 @@ public class DestroyOutOfBounds : MonoBehaviour
             //を指します。したがって、自分を消すという意味になります
         }else if(transform.position.z < lowerBound) {
             Destroy(gameObject);
+            Debug.Log("Game Over!");
             //【余談】実はDestroyは重い処理で、実際にはオブジェクトを消さず、
             //一時的に非表示にして使いまわすのがゲームは普通です。
             //これをオブジェクトプーリング（object pooling）といいます。

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]Text ScoreText;
-    [SerializeField] Text GameOverText;
     public int score = 0;//スコア。ほんとはよくないけどpublicにします。
     private float horizontalInput;
     [SerializeField] float speed;
