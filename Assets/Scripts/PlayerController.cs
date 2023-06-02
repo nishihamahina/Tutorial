@@ -1,13 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]Text ScoreText;
+    [SerializeField] Text GameOverText;
+    public int score = 0;//スコア。ほんとはよくないけどpublicにします。
     private float horizontalInput;
-    [SerializeField] private float speed;
-    [SerializeField] private float xRange;
-    [SerializeField] private GameObject projectilePrefab;//食べ物プレハブ（あとで複製）
+    [SerializeField] float speed;
+    [SerializeField] float xRange;
+    [SerializeField] GameObject projectilePrefab;//食べ物プレハブ（あとで複製）
+
+     void Start()
+    {
+        SetCountText(0);//初期化
+    }
+
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
@@ -30,6 +41,13 @@ public class PlayerController : MonoBehaviour
                             transform.position,
                             projectilePrefab.transform.rotation);
         }
+       
+    }
 
+    //SetCountTextをここら辺に書く
+    public void SetCountText(int point)
+    {
+        score += point;
+       ScoreText.text = "Score:" + score.ToString();//[重要]UI更新
     }
 }
